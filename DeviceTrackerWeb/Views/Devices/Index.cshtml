@@ -9,16 +9,25 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Search: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.DeviceId)
+            @Html.ActionLink("Device ID", "Index", new { sortOrder = ViewBag.DeviceIdSort })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Model)
+            @Html.ActionLink("Model", "Index", new { sortOrder = ViewBag.DeviceModelSort })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Made)
+            @Html.ActionLink("Made", "Index", new { sortOrder = ViewBag.DeviceMadeSort })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.OS)
@@ -27,10 +36,10 @@
             @Html.DisplayNameFor(model => model.ScreenSize)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User)
+            @Html.ActionLink("User", "Index", new { sortOrder = ViewBag.DeviceUserSort })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CheckOutTime)
+            @Html.ActionLink("Checkout Date", "Index", new { sortOrder = ViewBag.DeviceCheckoutDateSort })
         </th>
         <th></th>
     </tr>

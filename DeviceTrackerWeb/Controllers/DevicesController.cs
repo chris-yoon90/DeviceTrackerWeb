@@ -16,9 +16,60 @@ namespace DeviceTrackerWeb.Controllers
         private DeviceTrackerWebContext db = new DeviceTrackerWebContext();
 
         // GET: Devices
-        public ActionResult Index()
+        public ActionResult Index(string searchString, string sortOrder)
         {
-            return View(db.Devices.ToList());
+            ViewBag.DeviceIdSort = String.IsNullOrEmpty(sortOrder) ? "deviceId_desc" : String.Empty;
+            ViewBag.DeviceModelSort = sortOrder == "Model" ? "model_desc" : "Model";
+            ViewBag.DeviceMadeSort = sortOrder == "Made" ? "made_desc" : "Made";
+            ViewBag.DeviceUserSort = sortOrder == "User" ? "user_desc" : "User";
+            ViewBag.DeviceCheckoutDateSort = sortOrder == "Checkout" ? "checkout_desc" : "Checkout";
+
+            var devices = from d in db.Devices select d;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                devices = devices.Where(d => 
+                    d.DeviceId.Contains(searchString) ||
+                    d.Made.Contains(searchString) ||
+                    d.Model.Contains(searchString) ||
+                    d.OS.Contains(searchString) ||
+                    d.User.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "deviceId_desc":
+                    devices = devices.OrderByDescending(d => d.DeviceId);
+                    break;
+                case "Model":
+                    devices = devices.OrderBy(d => d.Model);
+                    break;
+                case "model_desc":
+                    devices = devices.OrderByDescending(d => d.Model);
+                    break;
+                case "Made":
+                    devices = devices.OrderBy((d => d.Made));
+                    break;
+                case "made_desc":
+                    devices = devices.OrderByDescending(d => d.Made);
+                    break;
+                case "User":
+                    devices = devices.OrderBy(d => d.User);
+                    break;
+                case "user_desc":
+                    devices = devices.OrderByDescending(d => d.User);
+                    break;
+                case "Checkout":
+                    devices = devices.OrderBy(d => d.CheckOutTime);
+                    break;
+                case "checkout_desc":
+                    devices = devices.OrderByDescending(d => d.CheckOutTime);
+                    break;
+                default:
+                    devices = devices.OrderBy(d => d.DeviceId);
+                    break;
+            }
+
+            return View(devices.ToList());
         }
 
         // GET: Devices/Details/5
