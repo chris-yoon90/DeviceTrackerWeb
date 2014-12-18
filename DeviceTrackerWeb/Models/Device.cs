@@ -31,7 +31,7 @@ namespace DeviceTrackerWeb.Models
         [StringLength(50)]
         public string User { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd H:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime CheckOutTime { get; set; }
     }
 }
