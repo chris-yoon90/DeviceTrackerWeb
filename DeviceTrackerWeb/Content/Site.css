@@ -22,3 +22,17 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.index-header {
+    margin-bottom: 10px;
+}
+
+.index-header h1 {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.index-header .logo {
+    height: 80px;
+    display: inline-block;
+}
