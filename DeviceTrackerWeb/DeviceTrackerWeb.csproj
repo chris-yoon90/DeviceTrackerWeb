@@ -128,6 +128,10 @@
     <Compile Include="Migrations\201412170600196_InitialCreate.Designer.cs">
       <DependentUpon>201412170600196_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201412180557433_ChangeScreenSizeToDouble.cs" />
+    <Compile Include="Migrations\201412180557433_ChangeScreenSizeToDouble.Designer.cs">
+      <DependentUpon>201412180557433_ChangeScreenSizeToDouble.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Device.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -188,6 +192,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201412170600196_InitialCreate.resx">
       <DependentUpon>201412170600196_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201412180557433_ChangeScreenSizeToDouble.resx">
+      <DependentUpon>201412180557433_ChangeScreenSizeToDouble.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

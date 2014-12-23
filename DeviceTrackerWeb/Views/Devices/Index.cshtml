@@ -33,10 +33,10 @@
             @Html.ActionLink("Made", "Index", new { sortOrder = ViewBag.DeviceMadeSort })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OS)
+            @Html.ActionLink("OS", "Index", new { sortOrder = ViewBag.DeviceOSSort })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ScreenSize)
+            @Html.ActionLink("ScreenSize", "Index", new { sortOrder = ViewBag.DeviceScreenSizeSort })
         </th>
         <th>
             @Html.ActionLink("User", "Index", new { sortOrder = ViewBag.DeviceUserSort })

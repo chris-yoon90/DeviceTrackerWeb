@@ -18,14 +18,16 @@ namespace DeviceTrackerWeb.Controllers
         // GET: Devices
         public ActionResult Index(string searchString, string sortOrder)
         {
-            ViewBag.DeviceIdSort = String.IsNullOrEmpty(sortOrder) ? "deviceId_desc" : String.Empty;
+            ViewBag.DeviceIdSort = string.IsNullOrEmpty(sortOrder) ? "deviceId_desc" : string.Empty;
             ViewBag.DeviceModelSort = sortOrder == "Model" ? "model_desc" : "Model";
             ViewBag.DeviceMadeSort = sortOrder == "Made" ? "made_desc" : "Made";
+            ViewBag.DeviceOSSort = sortOrder == "OS" ? "os_desc" : "OS";
+            ViewBag.DeviceScreenSizeSort = sortOrder == "ScreenSize" ? "screen_size_desc" : "ScreenSize";
             ViewBag.DeviceUserSort = sortOrder == "User" ? "user_desc" : "User";
             ViewBag.DeviceCheckoutDateSort = sortOrder == "Checkout" ? "checkout_desc" : "Checkout";
 
             var devices = from d in db.Devices select d;
-            if (!String.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
                 devices = devices.Where(d => 
                     d.DeviceId.Contains(searchString) ||
@@ -47,10 +49,22 @@ namespace DeviceTrackerWeb.Controllers
                     devices = devices.OrderByDescending(d => d.Model);
                     break;
                 case "Made":
-                    devices = devices.OrderBy((d => d.Made));
+                    devices = devices.OrderBy(d => d.Made);
                     break;
                 case "made_desc":
                     devices = devices.OrderByDescending(d => d.Made);
+                    break;
+                case "OS":
+                    devices = devices.OrderBy(d => d.OS);
+                    break;
+                case "os_desc":
+                    devices = devices.OrderByDescending(d => d.OS);
+                    break;
+                case "ScreenSize":
+                    devices = devices.OrderBy(d => d.ScreenSize);
+                    break;
+                case "screen_size_desc":
+                    devices = devices.OrderByDescending(d => d.ScreenSize);
                     break;
                 case "User":
                     devices = devices.OrderBy(d => d.User);

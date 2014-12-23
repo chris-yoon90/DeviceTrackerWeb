@@ -25,8 +25,8 @@ namespace DeviceTrackerWeb.Models
         public string OS { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string ScreenSize { get; set; }
+        [Range(0, double.MaxValue, ErrorMessage = "The screen size must be greater than 0")]
+        public double ScreenSize { get; set; }
 
         [StringLength(50)]
         public string User { get; set; }
