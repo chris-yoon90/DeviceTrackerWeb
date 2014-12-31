@@ -1,10 +1,11 @@
-﻿using DeviceTrackerWeb.Models;
-using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration.Conventions;
+﻿using System.Data.Entity;
+
+using DeviceTrackerWeb.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace DeviceTrackerWeb.DAL
 {
-    public class DeviceTrackerWebContext : DbContext
+    public class DeviceTrackerWebContext : IdentityDbContext<DTIdentityUser>
     {
         public DeviceTrackerWebContext()
             : base("DeviceTrackerWebContext")

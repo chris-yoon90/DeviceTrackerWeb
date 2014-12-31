@@ -5,6 +5,7 @@ using DeviceTrackerWeb.Models;
 
 namespace DeviceTrackerWeb.DAL
 {
+    [Obsolete]
     public class DeviceTrackerWebInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<DeviceTrackerWebContext>
     {
         protected override void Seed(DeviceTrackerWebContext context)
