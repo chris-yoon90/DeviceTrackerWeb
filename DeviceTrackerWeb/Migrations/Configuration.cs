@@ -1,11 +1,14 @@
+using System;
+using System.Collections.Generic;
+using System.Data.Entity.Migrations;
+
+using DeviceTrackerWeb.Models;
+
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+
 namespace DeviceTrackerWeb.Migrations
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data.Entity.Migrations;
-
-    using DeviceTrackerWeb.Models;
-
     internal sealed class Configuration : DbMigrationsConfiguration<DeviceTrackerWeb.DAL.DeviceTrackerWebContext>
     {
         public Configuration()
@@ -163,6 +166,25 @@ namespace DeviceTrackerWeb.Migrations
                                };
             devices.ForEach(d => context.Devices.AddOrUpdate(p => p.DeviceId, d));
             context.SaveChanges();
+
+            UserStore<DTIdentityUser> userStore = new UserStore<DTIdentityUser>(context);
+            UserManager<DTIdentityUser> userManager = new UserManager<DTIdentityUser>(userStore);
+
+            DTIdentityUser user = new DTIdentityUser();
+
+            user.UserName = "Administrator";
+            user.Email = "admin@DTAdmin.com";
+            user.FirstName = "Admin";
+            user.LastName = "Admin";
+            string password = "t3st0rder";
+
+            IdentityResult result = userManager.Create(user, password);
+
+            if (result.Succeeded)
+            {
+                userManager.AddToRole(user.Id, "Administrator");
+            }
+
         }
     }
 }
