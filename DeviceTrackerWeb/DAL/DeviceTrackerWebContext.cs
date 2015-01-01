@@ -14,9 +14,9 @@ namespace DeviceTrackerWeb.DAL
         
         public DbSet<Device> Devices { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-        }
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        //}
     }
 }

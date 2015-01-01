@@ -146,10 +146,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DevicesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\DeviceTrackerWebContext.cs" />
-    <Compile Include="DAL\DeviceTrackerWebInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -160,6 +160,10 @@
     <Compile Include="Migrations\201412180557433_ChangeScreenSizeToDouble.cs" />
     <Compile Include="Migrations\201412180557433_ChangeScreenSizeToDouble.Designer.cs">
       <DependentUpon>201412180557433_ChangeScreenSizeToDouble.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501010302393_AddUserRoleAndIdentity.cs" />
+    <Compile Include="Migrations\201501010302393_AddUserRoleAndIdentity.Designer.cs">
+      <DependentUpon>201501010302393_AddUserRoleAndIdentity.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ChangePassword.cs" />
@@ -216,6 +220,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -230,6 +235,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201412180557433_ChangeScreenSizeToDouble.resx">
       <DependentUpon>201412180557433_ChangeScreenSizeToDouble.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501010302393_AddUserRoleAndIdentity.resx">
+      <DependentUpon>201501010302393_AddUserRoleAndIdentity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
