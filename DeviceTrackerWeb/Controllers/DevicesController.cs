@@ -102,6 +102,7 @@ namespace DeviceTrackerWeb.Controllers
         }
 
         // GET: Devices/Create
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create()
         {
             return View();
@@ -111,6 +112,7 @@ namespace DeviceTrackerWeb.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,DeviceId,Model,Made,OS,ScreenSize,User,CheckOutTime")] Device device)
         {
@@ -125,6 +127,7 @@ namespace DeviceTrackerWeb.Controllers
         }
 
         // GET: Devices/Edit/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -143,6 +146,7 @@ namespace DeviceTrackerWeb.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,DeviceId,Model,Made,OS,ScreenSize,User,CheckOutTime")] Device device)
         {
@@ -156,6 +160,7 @@ namespace DeviceTrackerWeb.Controllers
         }
 
         // GET: Devices/Delete/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -172,6 +177,7 @@ namespace DeviceTrackerWeb.Controllers
 
         // POST: Devices/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
