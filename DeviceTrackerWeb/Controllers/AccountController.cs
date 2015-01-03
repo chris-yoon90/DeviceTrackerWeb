@@ -140,6 +140,7 @@ namespace DeviceTrackerWeb.Controllers
             ChangeProfile model = new ChangeProfile();
             model.FirstName = user.FirstName;
             model.LastName = user.LastName;
+            model.Email = user.Email;
             return View(model);
         }
 
@@ -153,6 +154,7 @@ namespace DeviceTrackerWeb.Controllers
                 DTIdentityUser user = userManager.FindByName(HttpContext.User.Identity.Name);
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
+                user.Email = model.Email;
                 IdentityResult result = userManager.Update(user);
 
                 if (result.Succeeded)
