@@ -169,6 +169,10 @@
     <Compile Include="Migrations\201501051842579_AddMaxLengthRestrictionToUserModels.Designer.cs">
       <DependentUpon>201501051842579_AddMaxLengthRestrictionToUserModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501051910101_AddOneToManyRelationsToUserAndDevice.cs" />
+    <Compile Include="Migrations\201501051910101_AddOneToManyRelationsToUserAndDevice.Designer.cs">
+      <DependentUpon>201501051910101_AddOneToManyRelationsToUserAndDevice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ChangePassword.cs" />
     <Compile Include="Models\ChangeProfile.cs" />
@@ -249,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501051842579_AddMaxLengthRestrictionToUserModels.resx">
       <DependentUpon>201501051842579_AddMaxLengthRestrictionToUserModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501051910101_AddOneToManyRelationsToUserAndDevice.resx">
+      <DependentUpon>201501051910101_AddOneToManyRelationsToUserAndDevice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

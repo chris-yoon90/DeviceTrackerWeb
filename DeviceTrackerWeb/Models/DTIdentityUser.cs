@@ -17,6 +17,6 @@ namespace DeviceTrackerWeb.Models
         [StringLength(50)]
         public string LastName { get; set; }
 
-        //public virtual ICollection<Device> Devices { get; set; }
+        public virtual ICollection<Device> Devices { get; set; }
     }
 }

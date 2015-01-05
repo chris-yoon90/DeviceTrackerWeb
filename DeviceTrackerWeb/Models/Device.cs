@@ -34,7 +34,6 @@ namespace DeviceTrackerWeb.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd H:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime CheckOutTime { get; set; }
 
-        //public virtual int DTIdentityUserID { get; set; }
-        //public virtual DTIdentityUser DTIdentityUser { get; set; }
+        public virtual DTIdentityUser DTIdentityUser { get; set; }
     }
 }
