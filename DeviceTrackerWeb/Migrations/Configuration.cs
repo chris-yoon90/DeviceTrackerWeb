@@ -19,6 +19,38 @@ namespace DeviceTrackerWeb.Migrations
 
         protected override void Seed(DeviceTrackerWeb.DAL.DeviceTrackerWebContext context)
         {
+            UserStore<DTIdentityUser> userStore = new UserStore<DTIdentityUser>(context);
+            UserManager<DTIdentityUser> userManager = new UserManager<DTIdentityUser>(userStore);
+            RoleStore<DTIdentityRole> roleStore = new RoleStore<DTIdentityRole>(context);
+            RoleManager<DTIdentityRole> roleManager = new RoleManager<DTIdentityRole>(roleStore);
+
+            if (!roleManager.RoleExists("Administrator"))
+            {
+                DTIdentityRole newRole = new DTIdentityRole("Administrator", "Admin user can add, edit and delete data");
+                roleManager.Create(newRole);
+            }
+
+            if (!roleManager.RoleExists("Employee"))
+            {
+                DTIdentityRole newRole = new DTIdentityRole("Employee", "Employee user can only view");
+                roleManager.Create(newRole);
+            }
+
+            DTIdentityUser user = new DTIdentityUser();
+
+            user.UserName = "Administrator";
+            user.Email = "admin@DTAdmin.com";
+            user.FirstName = "Admin";
+            user.LastName = "Admin";
+            string password = "t3st0rder";
+
+            IdentityResult result = userManager.Create(user, password);
+
+            if (result.Succeeded)
+            {
+                userManager.AddToRole(user.Id, "Administrator");
+            }
+
             var createdDate = DateTime.Now;
             var devices = new List<Device>
                                {
@@ -166,25 +198,6 @@ namespace DeviceTrackerWeb.Migrations
                                };
             devices.ForEach(d => context.Devices.AddOrUpdate(p => p.DeviceId, d));
             context.SaveChanges();
-
-            UserStore<DTIdentityUser> userStore = new UserStore<DTIdentityUser>(context);
-            UserManager<DTIdentityUser> userManager = new UserManager<DTIdentityUser>(userStore);
-
-            DTIdentityUser user = new DTIdentityUser();
-
-            user.UserName = "Administrator";
-            user.Email = "admin@DTAdmin.com";
-            user.FirstName = "Admin";
-            user.LastName = "Admin";
-            string password = "t3st0rder";
-
-            IdentityResult result = userManager.Create(user, password);
-
-            if (result.Succeeded)
-            {
-                userManager.AddToRole(user.Id, "Administrator");
-            }
-
         }
     }
 }
