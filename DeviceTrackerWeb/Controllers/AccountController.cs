@@ -10,6 +10,8 @@ using Microsoft.Owin.Security;
 
 namespace DeviceTrackerWeb.Controllers
 {
+    using System.Net;
+
     public class AccountController : Controller
     {
         private UserManager<DTIdentityUser> userManager;
@@ -184,6 +186,22 @@ namespace DeviceTrackerWeb.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        //// GET: Account/Details/{user id}
+        public ActionResult Details(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            DTIdentityUser user = userManager.FindById(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(user);
         }
     }
 }

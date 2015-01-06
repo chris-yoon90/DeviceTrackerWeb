@@ -19,9 +19,15 @@ namespace DeviceTrackerWeb.Migrations
 
         protected override void Seed(DeviceTrackerWeb.DAL.DeviceTrackerWebContext context)
         {
-            UserStore<DTIdentityUser> userStore = new UserStore<DTIdentityUser>(context);
-            UserManager<DTIdentityUser> userManager = new UserManager<DTIdentityUser>(userStore);
-            RoleStore<DTIdentityRole> roleStore = new RoleStore<DTIdentityRole>(context);
+            CreateSampleRoles(context);
+            CreateSampleAdminUser(context);
+            CreateSampleUsers(context);
+            CreateSampleDevices(context);
+        }
+
+        private void CreateSampleRoles(DeviceTrackerWeb.DAL.DeviceTrackerWebContext db)
+        {
+            RoleStore<DTIdentityRole> roleStore = new RoleStore<DTIdentityRole>(db);
             RoleManager<DTIdentityRole> roleManager = new RoleManager<DTIdentityRole>(roleStore);
 
             if (!roleManager.RoleExists("Administrator"))
@@ -35,6 +41,12 @@ namespace DeviceTrackerWeb.Migrations
                 DTIdentityRole newRole = new DTIdentityRole("Employee", "Employee user can only view");
                 roleManager.Create(newRole);
             }
+        }
+
+        private void CreateSampleAdminUser(DeviceTrackerWeb.DAL.DeviceTrackerWebContext db)
+        {
+            UserStore<DTIdentityUser> userStore = new UserStore<DTIdentityUser>(db);
+            UserManager<DTIdentityUser> userManager = new UserManager<DTIdentityUser>(userStore);
 
             DTIdentityUser user = new DTIdentityUser();
 
@@ -50,7 +62,37 @@ namespace DeviceTrackerWeb.Migrations
             {
                 userManager.AddToRole(user.Id, "Administrator");
             }
+        }
 
+        private void CreateSampleUsers(DeviceTrackerWeb.DAL.DeviceTrackerWebContext db)
+        {
+            UserStore<DTIdentityUser> userStore = new UserStore<DTIdentityUser>(db);
+            UserManager<DTIdentityUser> userManager = new UserManager<DTIdentityUser>(userStore);
+
+            int userCount = 50;
+
+            for (int i = 0; i < userCount; i++)
+            {
+                DTIdentityUser user = new DTIdentityUser();
+                user.UserName = string.Format("User_{0}", i);
+                user.Email = string.Format("user_{0}@example.com", i);
+                user.FirstName = string.Format("User_{0}_FirstName", i);
+                user.LastName = string.Format("User_{0}_LastName", i);
+                string password = "t3st0rder";
+
+                IdentityResult result = userManager.Create(user, password);
+
+                if (result.Succeeded)
+                {
+                    userManager.AddToRole(user.Id, "Administrator");
+                }
+            }
+        }
+
+        private void CreateSampleDevices(DeviceTrackerWeb.DAL.DeviceTrackerWebContext db)
+        {
+            UserStore<DTIdentityUser> userStore = new UserStore<DTIdentityUser>(db);
+            UserManager<DTIdentityUser> userManager = new UserManager<DTIdentityUser>(userStore);
             var createdDate = DateTime.Now;
             var devices = new List<Device>
                                {
@@ -63,6 +105,7 @@ namespace DeviceTrackerWeb.Migrations
                                            ScreenSize = 4, 
                                            User = "Tom",
                                            CheckOutTime = createdDate, 
+                                           DTIdentityUser = userManager.FindByName("User_1")
                                        },
                                   new Device
                                        {
@@ -72,7 +115,8 @@ namespace DeviceTrackerWeb.Migrations
                                            OS = "iOS 7.1", 
                                            ScreenSize = 4, 
                                            User = "Eddie",
-                                           CheckOutTime = createdDate, 
+                                           CheckOutTime = createdDate,
+                                           DTIdentityUser = userManager.FindByName("User_1")
                                        },
                                   new Device
                                        {
@@ -82,7 +126,8 @@ namespace DeviceTrackerWeb.Migrations
                                            OS = "iOS 8.0", 
                                            ScreenSize = 4, 
                                            User = "",
-                                           CheckOutTime = createdDate, 
+                                           CheckOutTime = createdDate,
+                                           DTIdentityUser = userManager.FindByName("User_1")
                                        },
                                   new Device
                                        {
@@ -93,6 +138,7 @@ namespace DeviceTrackerWeb.Migrations
                                            ScreenSize = 4, 
                                            User = "",
                                            CheckOutTime = createdDate, 
+                                           DTIdentityUser = userManager.FindByName("User_2")
                                        },
                                   new Device
                                        {
@@ -103,6 +149,7 @@ namespace DeviceTrackerWeb.Migrations
                                            ScreenSize = 4.7, 
                                            User = "Chris",
                                            CheckOutTime = createdDate, 
+                                           DTIdentityUser = userManager.FindByName("User_3")
                                        },
                                 new Device
                                        {
@@ -113,6 +160,7 @@ namespace DeviceTrackerWeb.Migrations
                                            ScreenSize = 3.5, 
                                            User = "Victor",
                                            CheckOutTime = createdDate, 
+                                           DTIdentityUser = userManager.FindByName("User_3")
                                        },
                                  new Device
                                        {
@@ -123,6 +171,7 @@ namespace DeviceTrackerWeb.Migrations
                                            ScreenSize = 7.9, 
                                            User = "",
                                            CheckOutTime = createdDate, 
+                                           DTIdentityUser = userManager.FindByName("User_4")
                                        },
                                  new Device
                                        {
@@ -133,6 +182,7 @@ namespace DeviceTrackerWeb.Migrations
                                            ScreenSize = 7.9, 
                                            User = "Aaron",
                                            CheckOutTime = createdDate, 
+                                           DTIdentityUser = userManager.FindByName("User_4")
                                        },
                                  new Device
                                        {
@@ -143,6 +193,7 @@ namespace DeviceTrackerWeb.Migrations
                                            ScreenSize = 5.1, 
                                            User = "",
                                            CheckOutTime = createdDate, 
+                                           DTIdentityUser = userManager.FindByName("User_5")
                                        },
 
                                  new Device
@@ -154,6 +205,7 @@ namespace DeviceTrackerWeb.Migrations
                                            ScreenSize = 5.1, 
                                            User = "",
                                            CheckOutTime = createdDate, 
+                                           DTIdentityUser = userManager.FindByName("User_6")
                                        },
                                        new Device
                                        {
@@ -164,6 +216,7 @@ namespace DeviceTrackerWeb.Migrations
                                            ScreenSize = 5.1, 
                                            User = "",
                                            CheckOutTime = createdDate, 
+                                           DTIdentityUser = userManager.FindByName("User_6")
                                        },
                                        new Device
                                        {
@@ -174,6 +227,7 @@ namespace DeviceTrackerWeb.Migrations
                                            ScreenSize = 7, 
                                            User = "Paola",
                                            CheckOutTime = createdDate, 
+                                           DTIdentityUser = userManager.FindByName("User_7")
                                        },
                                        new Device
                                        {
@@ -184,6 +238,7 @@ namespace DeviceTrackerWeb.Migrations
                                            ScreenSize = 7, 
                                            User = "Beau",
                                            CheckOutTime = createdDate, 
+                                           DTIdentityUser = userManager.FindByName("User_7")
                                        },
                                        new Device
                                        {
@@ -194,10 +249,11 @@ namespace DeviceTrackerWeb.Migrations
                                            ScreenSize = 8.3, 
                                            User = "",
                                            CheckOutTime = createdDate, 
+                                           DTIdentityUser = userManager.FindByName("User_7")
                                        }
                                };
-            devices.ForEach(d => context.Devices.AddOrUpdate(p => p.DeviceId, d));
-            context.SaveChanges();
+            devices.ForEach(d => db.Devices.AddOrUpdate(p => p.DeviceId, d));
+            db.SaveChanges();
         }
     }
 }

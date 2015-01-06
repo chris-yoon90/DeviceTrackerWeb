@@ -67,7 +67,7 @@
             @Html.DisplayFor(modelItem => item.ScreenSize)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.User)
+            @Html.ActionLink(string.Format("{0} {1}", item.DTIdentityUser.FirstName, item.DTIdentityUser.LastName), "Details", "Account", new { id = item.DTIdentityUser.Id }, "")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CheckOutTime)
