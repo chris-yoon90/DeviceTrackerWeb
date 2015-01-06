@@ -84,7 +84,7 @@ namespace DeviceTrackerWeb.Migrations
 
                 if (result.Succeeded)
                 {
-                    userManager.AddToRole(user.Id, "Administrator");
+                    userManager.AddToRole(user.Id, "Employee");
                 }
             }
         }
@@ -103,7 +103,6 @@ namespace DeviceTrackerWeb.Migrations
                                            Made = "Apple", 
                                            OS = "iOS 8.0", 
                                            ScreenSize = 4, 
-                                           User = "Tom",
                                            CheckOutTime = createdDate, 
                                            DTIdentityUser = userManager.FindByName("User_1")
                                        },
@@ -114,7 +113,6 @@ namespace DeviceTrackerWeb.Migrations
                                            Made = "Apple", 
                                            OS = "iOS 7.1", 
                                            ScreenSize = 4, 
-                                           User = "Eddie",
                                            CheckOutTime = createdDate,
                                            DTIdentityUser = userManager.FindByName("User_1")
                                        },
@@ -125,7 +123,6 @@ namespace DeviceTrackerWeb.Migrations
                                            Made = "Apple", 
                                            OS = "iOS 8.0", 
                                            ScreenSize = 4, 
-                                           User = "",
                                            CheckOutTime = createdDate,
                                            DTIdentityUser = userManager.FindByName("User_1")
                                        },
@@ -136,7 +133,6 @@ namespace DeviceTrackerWeb.Migrations
                                            Made = "Apple", 
                                            OS = "iOS 7.1.2", 
                                            ScreenSize = 4, 
-                                           User = "",
                                            CheckOutTime = createdDate, 
                                            DTIdentityUser = userManager.FindByName("User_2")
                                        },
@@ -147,7 +143,6 @@ namespace DeviceTrackerWeb.Migrations
                                            Made = "Apple", 
                                            OS = "iOS 8.0.2", 
                                            ScreenSize = 4.7, 
-                                           User = "Chris",
                                            CheckOutTime = createdDate, 
                                            DTIdentityUser = userManager.FindByName("User_3")
                                        },
@@ -158,7 +153,6 @@ namespace DeviceTrackerWeb.Migrations
                                            Made = "Apple", 
                                            OS = "iOS 6.1.6", 
                                            ScreenSize = 3.5, 
-                                           User = "Victor",
                                            CheckOutTime = createdDate, 
                                            DTIdentityUser = userManager.FindByName("User_3")
                                        },
@@ -169,9 +163,7 @@ namespace DeviceTrackerWeb.Migrations
                                            Made = "Apple", 
                                            OS = "iOS 8.0", 
                                            ScreenSize = 7.9, 
-                                           User = "",
                                            CheckOutTime = createdDate, 
-                                           DTIdentityUser = userManager.FindByName("User_4")
                                        },
                                  new Device
                                        {
@@ -180,9 +172,7 @@ namespace DeviceTrackerWeb.Migrations
                                            Made = "Apple", 
                                            OS = "iOS 7.1.2", 
                                            ScreenSize = 7.9, 
-                                           User = "Aaron",
                                            CheckOutTime = createdDate, 
-                                           DTIdentityUser = userManager.FindByName("User_4")
                                        },
                                  new Device
                                        {
@@ -191,9 +181,7 @@ namespace DeviceTrackerWeb.Migrations
                                            Made = "Samsung", 
                                            OS = "Android 4.4.2", 
                                            ScreenSize = 5.1, 
-                                           User = "",
                                            CheckOutTime = createdDate, 
-                                           DTIdentityUser = userManager.FindByName("User_5")
                                        },
 
                                  new Device
@@ -203,7 +191,6 @@ namespace DeviceTrackerWeb.Migrations
                                            Made = "Samsung", 
                                            OS = "Android 4.4.2", 
                                            ScreenSize = 5.1, 
-                                           User = "",
                                            CheckOutTime = createdDate, 
                                            DTIdentityUser = userManager.FindByName("User_6")
                                        },
@@ -214,7 +201,6 @@ namespace DeviceTrackerWeb.Migrations
                                            Made = "Samsung", 
                                            OS = "Android 4.4.2", 
                                            ScreenSize = 5.1, 
-                                           User = "",
                                            CheckOutTime = createdDate, 
                                            DTIdentityUser = userManager.FindByName("User_6")
                                        },
@@ -225,7 +211,6 @@ namespace DeviceTrackerWeb.Migrations
                                            Made = "LG", 
                                            OS = "Android 4.4.4", 
                                            ScreenSize = 7, 
-                                           User = "Paola",
                                            CheckOutTime = createdDate, 
                                            DTIdentityUser = userManager.FindByName("User_7")
                                        },
@@ -236,7 +221,6 @@ namespace DeviceTrackerWeb.Migrations
                                            Made = "ASUS", 
                                            OS = "Android 4.4.4", 
                                            ScreenSize = 7, 
-                                           User = "Beau",
                                            CheckOutTime = createdDate, 
                                            DTIdentityUser = userManager.FindByName("User_7")
                                        },
@@ -247,7 +231,6 @@ namespace DeviceTrackerWeb.Migrations
                                            Made = "LG", 
                                            OS = "Android 4.4.4", 
                                            ScreenSize = 8.3, 
-                                           User = "",
                                            CheckOutTime = createdDate, 
                                            DTIdentityUser = userManager.FindByName("User_7")
                                        }

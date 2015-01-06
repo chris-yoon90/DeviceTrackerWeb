@@ -38,7 +38,7 @@
             @Html.ActionLink("OS", "Index", new { sortOrder = ViewBag.DeviceOSSort })
         </th>
         <th>
-            @Html.ActionLink("ScreenSize", "Index", new { sortOrder = ViewBag.DeviceScreenSizeSort })
+            @Html.ActionLink("Screen Size", "Index", new { sortOrder = ViewBag.DeviceScreenSizeSort })
         </th>
         <th>
             @Html.ActionLink("User", "Index", new { sortOrder = ViewBag.DeviceUserSort })
@@ -67,7 +67,10 @@
             @Html.DisplayFor(modelItem => item.ScreenSize)
         </td>
         <td>
-            @Html.ActionLink(string.Format("{0} {1}", item.DTIdentityUser.FirstName, item.DTIdentityUser.LastName), "Details", "Account", new { id = item.DTIdentityUser.Id }, "")
+            @if (item.DTIdentityUser != null)
+            {
+                @Html.ActionLink(string.Format("{0} {1}", item.DTIdentityUser.FirstName, item.DTIdentityUser.LastName), "Details", "Account", new { id = item.DTIdentityUser.Id }, "")
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CheckOutTime)

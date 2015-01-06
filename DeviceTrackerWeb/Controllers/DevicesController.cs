@@ -29,12 +29,13 @@ namespace DeviceTrackerWeb.Controllers
             var devices = from d in db.Devices select d;
             if (!string.IsNullOrEmpty(searchString))
             {
-                devices = devices.Where(d => 
-                    d.DeviceId.Contains(searchString) ||
-                    d.Made.Contains(searchString) ||
-                    d.Model.Contains(searchString) ||
-                    d.OS.Contains(searchString) ||
-                    d.User.Contains(searchString));
+                devices =
+                    devices.Where(
+                        d =>
+                        d.DeviceId.Contains(searchString) || d.Made.Contains(searchString)
+                        || d.Model.Contains(searchString) || d.OS.Contains(searchString)
+                        || d.DTIdentityUser.FirstName.Contains(searchString)
+                        || d.DTIdentityUser.LastName.Contains(searchString));
             }
 
             switch (sortOrder)
@@ -67,10 +68,10 @@ namespace DeviceTrackerWeb.Controllers
                     devices = devices.OrderByDescending(d => d.ScreenSize);
                     break;
                 case "User":
-                    devices = devices.OrderBy(d => d.User);
+                    devices = devices.OrderBy(d => d.DTIdentityUser.FirstName).ThenBy(d => d.DTIdentityUser.LastName);
                     break;
                 case "user_desc":
-                    devices = devices.OrderByDescending(d => d.User);
+                    devices = devices.OrderByDescending(d => d.DTIdentityUser.FirstName).ThenByDescending(d => d.DTIdentityUser.LastName);
                     break;
                 case "Checkout":
                     devices = devices.OrderBy(d => d.CheckOutTime);
@@ -114,7 +115,7 @@ namespace DeviceTrackerWeb.Controllers
         [HttpPost]
         [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,DeviceId,Model,Made,OS,ScreenSize,User,CheckOutTime")] Device device)
+        public ActionResult Create([Bind(Include = "ID,DeviceId,Model,Made,OS,ScreenSize,CheckOutTime")] Device device)
         {
             if (ModelState.IsValid)
             {
@@ -148,7 +149,7 @@ namespace DeviceTrackerWeb.Controllers
         [HttpPost]
         [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,DeviceId,Model,Made,OS,ScreenSize,User,CheckOutTime")] Device device)
+        public ActionResult Edit([Bind(Include = "ID,DeviceId,Model,Made,OS,ScreenSize,CheckOutTime")] Device device)
         {
             if (ModelState.IsValid)
             {

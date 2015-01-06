@@ -52,11 +52,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.User)
+            User
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.User)
+            @if (Model.DTIdentityUser != null)
+            {
+                @Html.DisplayFor(model => model.DTIdentityUser.FirstName)
+                @Html.DisplayFor(model => model.DTIdentityUser.LastName)
+            }
         </dd>
 
         <dt>

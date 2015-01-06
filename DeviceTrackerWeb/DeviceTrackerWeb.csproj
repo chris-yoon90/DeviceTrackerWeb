@@ -173,6 +173,10 @@
     <Compile Include="Migrations\201501051910101_AddOneToManyRelationsToUserAndDevice.Designer.cs">
       <DependentUpon>201501051910101_AddOneToManyRelationsToUserAndDevice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501061840170_RemoveUserColumnInDevice.cs" />
+    <Compile Include="Migrations\201501061840170_RemoveUserColumnInDevice.Designer.cs">
+      <DependentUpon>201501061840170_RemoveUserColumnInDevice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ChangePassword.cs" />
     <Compile Include="Models\ChangeProfile.cs" />
@@ -257,6 +261,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501051910101_AddOneToManyRelationsToUserAndDevice.resx">
       <DependentUpon>201501051910101_AddOneToManyRelationsToUserAndDevice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501061840170_RemoveUserColumnInDevice.resx">
+      <DependentUpon>201501061840170_RemoveUserColumnInDevice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
